@@ -6,11 +6,6 @@
 
 ---
 
-## 🌐 在线体验
-
-👉 https://ai-tarot-app-eta.vercel.app/
-
----
 
 ## 📸 项目截图
 
