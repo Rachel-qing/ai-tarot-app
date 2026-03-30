@@ -86,6 +86,8 @@
 
 ## 📁 项目结构
 
+```text
+.
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx          # 主页面（抽牌 + UI + 历史记录）
@@ -97,6 +99,7 @@
 │   │   └── tarot.json        # 塔罗牌数据（22 张）
 ├── screenshot.png
 ├── README.md
+```
 
 ---
 
