@@ -22,9 +22,9 @@
 
 ---
 
-## 🖥️ 产品截图（可选）
+## 🖥️ 产品截图 (可选)
 
-> 这里可以放你的页面截图（推荐）
+![我的项目效果截图](./screenshot.png)
 
 ---
 
@@ -34,7 +34,7 @@
 - **语言**：TypeScript
 - **UI**：原生 CSS（轻量设计）
 - **数据存储**：localStorage（历史记录）
-- **AI 模型**：Google Gemini（gemini-1.5-flash）
+- **AI 模型**：Google Gemini（gemini-2.5-flash）
 - **API 架构**：Next.js API Route
 
 ---
