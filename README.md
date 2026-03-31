@@ -6,6 +6,35 @@
 
 ---
 
+## 🔄 系统流程
+用户输入问题
+   ↓
+前端页面（page.tsx）
+   ├─ 校验输入内容
+   ├─ 检查本地使用次数 / 冷却时间
+   ├─ 调用 drawCards() 随机抽取三张牌
+   └─ 将「问题 + 牌阵结果」发送到后端接口
+   ↓
+后端接口（api/tarot_reading/route.ts）
+   ├─ 校验请求参数
+   ├─ 检查 IP 限流 / 请求频率
+   ├─ 组装 Prompt
+   └─ 调用 Gemini 模型生成解读
+   ↓
+AI 模型（Gemini）
+   └─ 返回结构化塔罗解读结果
+   ↓
+后端接口返回 JSON
+   ↓
+前端页面接收结果
+   ├─ 展示三张牌阵
+   ├─ 展示 AI 解读内容
+   ├─ 更新本地使用状态
+   └─ 保存历史记录到 localStorage
+   ↓
+用户查看结果 / 恢复历史记录
+
+---
 
 ## 📸 项目截图
 
@@ -82,30 +111,32 @@
 ## 📁 项目结构
 
 ```text
-
 src/
-  app/
-    page.tsx
-    layout.tsx
-    api/
-      tarot_reading/
-        route.ts
-  components/
-    CardSpread.tsx
-    HeroSection.tsx
-    HistoryPanel.tsx
-    QuestionPanel.tsx
-    ReadingReport.tsx
-    TipsPanel.tsx
-  data/
-    tarot.json
-  lib/
-    tarot.ts
-    usage.ts
-  types/
-    tarot.ts
+├── app/
+│   ├── page.tsx                # 主页面：状态管理 + 抽牌 + 调用 API + 渲染组件
+│   ├── layout.tsx              # 全局布局：HTML 结构与全局样式
+│   └── api/
+│       └── tarot_reading/
+│           └── route.ts        # 后端接口：调用 Gemini + 限流控制
+│
+├── components/
+│   ├── CardSpread.tsx          # 三张牌阵展示
+│   ├── HeroSection.tsx         # 顶部介绍 + 使用状态
+│   ├── HistoryPanel.tsx        # 历史记录列表
+│   ├── QuestionPanel.tsx       # 问题输入区 + 抽牌按钮
+│   ├── ReadingReport.tsx       # AI 解读结果展示
+│   └── TipsPanel.tsx           # 使用提示
+│
+├── data/
+│   └── tarot.json              # 塔罗牌数据（22 张牌 + 含义 + 建议）
+│
+├── lib/
+│   ├── tarot.ts                # 抽牌逻辑（随机 + 正逆位）
+│   └── usage.ts                # 使用限制（每日次数 + 冷却时间）
+│
+└── types/
+    └── tarot.ts                # 类型定义（TarotCard / DrawnCard / HistoryRecord）
 ```
-
 ---
 
 ## ⚙️ 本地运行
