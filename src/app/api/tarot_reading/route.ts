@@ -16,8 +16,8 @@ type RateRecord = {
 const ipStore = new Map<string, RateRecord>();
 
 const MIN_INTERVAL_MS = 10_000; // 同一 IP 两次请求最少间隔 10 秒
-const MAX_REQUESTS_PER_HOUR = 10;
-const HOUR_MS = 60 * 60 * 1000;
+const MAX_REQUESTS_PER_DAY = 3;
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 function getClientIp(req: Request) {
   const forwardedFor = req.headers.get("x-forwarded-for");
@@ -43,10 +43,10 @@ function checkRateLimit(ip: string) {
   }
 
   const recentTimestamps = record.timestamps.filter(
-    (timestamp) => now - timestamp < HOUR_MS
+    (timestamp) => now - timestamp < DAY_MS
   );
 
-  if (recentTimestamps.length >= MAX_REQUESTS_PER_HOUR) {
+  if (recentTimestamps.length >= MAX_REQUESTS_PER_DAY) {
     return {
       ok: false,
       error: "当前访问过于频繁，请稍后再试",
