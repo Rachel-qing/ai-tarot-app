@@ -82,18 +82,28 @@
 ## 📁 项目结构
 
 ```text
-.
-├── src/
-│   ├── app/
-│   │   ├── page.tsx          # 主页面（抽牌 + UI + 历史记录）
-│   │   ├── layout.tsx        # 根布局
-│   │   └── api/
-│   │       └── tarot_reading/
-│   │           └── route.ts  # AI 解读接口 + 限流
-│   ├── data/
-│   │   └── tarot.json        # 塔罗牌数据（22 张）
-├── screenshot.png
-├── README.md
+
+src/
+  app/
+    page.tsx
+    layout.tsx
+    api/
+      tarot_reading/
+        route.ts
+  components/
+    CardSpread.tsx
+    HeroSection.tsx
+    HistoryPanel.tsx
+    QuestionPanel.tsx
+    ReadingReport.tsx
+    TipsPanel.tsx
+  data/
+    tarot.json
+  lib/
+    tarot.ts
+    usage.ts
+  types/
+    tarot.ts
 ```
 
 ---
